@@ -2,7 +2,6 @@ import express from "express";
 import cors from "cors";
 import mongoose from "mongoose";
 import dotenv from "dotenv";
-import path from "path";
 import connectDB from "./config/database";
 import { ContactFormData, ApiResponse } from "./types/index";
 import userRoutes from "./routes/userRoutes";
@@ -32,12 +31,6 @@ app.use(
   })
 );
 
-// Статическая раздача файлов из директории uploads
-const uploadsPath = path.join(__dirname, "..", "uploads");
-console.log("Uploads directory path:", uploadsPath);
-app.use("/api/uploads", express.static(uploadsPath));
-
-// Добавим middleware для логирования запросов
 app.use((req, res, next) => {
   console.log(`${req.method} ${req.path}`);
   next();
@@ -51,8 +44,7 @@ app.use("/api/requests", requestRoutes);
 app.use("/api/sliders", sliderRoutes);
 app.use("/api/reviews", reviewRoutes);
 app.use("/api/gallery", galleryRoutes);
-app.use("/api/uploads", express.static(path.join(__dirname, "../uploads")));
-
+app.use("/api/uploads", express.static("uploads"));
 // Validate phone number format
 const validatePhone = (phone: string): boolean => {
   // Just check if it contains any digits
