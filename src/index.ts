@@ -35,7 +35,7 @@ app.use(
 // Статическая раздача файлов из директории uploads
 const uploadsPath = path.join(__dirname, "..", "uploads");
 console.log("Uploads directory path:", uploadsPath);
-app.use("/uploads", express.static(uploadsPath));
+app.use("/api/uploads", express.static(uploadsPath));
 
 // Добавим middleware для логирования запросов
 app.use((req, res, next) => {
@@ -51,7 +51,7 @@ app.use("/api/requests", requestRoutes);
 app.use("/api/sliders", sliderRoutes);
 app.use("/api/reviews", reviewRoutes);
 app.use("/api/gallery", galleryRoutes);
-app.use("/uploads", express.static(path.join(__dirname, "../uploads")));
+app.use("/api/uploads", express.static(path.join(__dirname, "../uploads")));
 
 // Validate phone number format
 const validatePhone = (phone: string): boolean => {
