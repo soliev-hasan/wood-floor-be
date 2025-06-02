@@ -49,3 +49,5 @@ export const adminAuth = async (
       .json({ success: false, message: "Access denied. Admin only." });
   }
 };
+
+export const isAdmin = adminAuth;

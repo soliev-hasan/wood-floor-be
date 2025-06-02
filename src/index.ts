@@ -13,6 +13,7 @@ import { createTestServices } from "./controllers/serviceController";
 import sliderRoutes from "./routes/sliderRoutes";
 import { createInitialSliders } from "./controllers/sliderController";
 import galleryRoutes from "./routes/galleryRoutes";
+import contactInfoRoutes from "./routes/contactInfoRoutes";
 
 dotenv.config();
 
@@ -45,6 +46,8 @@ app.use("/api/sliders", sliderRoutes);
 app.use("/api/reviews", reviewRoutes);
 app.use("/api/gallery", galleryRoutes);
 app.use("/api/uploads", express.static("uploads"));
+app.use("/api/contact-info", contactInfoRoutes);
+
 // Validate phone number format
 const validatePhone = (phone: string): boolean => {
   // Just check if it contains any digits
